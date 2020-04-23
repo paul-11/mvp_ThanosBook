@@ -20,8 +20,12 @@ class App extends Component {
     return (
       <HashRouter basename="/">
         <div>
-          <Route exact path="/" component={Login} />
-          <Route path="/signup" component={Signup} />
+          <div>
+            <Route exact path="/" component={Login} />
+          </div>
+          <div>
+            <Route path="/signup" component={Signup} />
+          </div>
         </div>
       </HashRouter>
     )
