@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'react-bootstrap'
-// const Login = () => (
+
 export default class Login extends Component {
   constructor() {
     super();
@@ -63,15 +63,13 @@ export default class Login extends Component {
   render() {
     if (this.state.isCredentialsCorrect === true) {
       return <Redirect to='/dashboard' />
-      //change the '/signup' endpoint to the profile page endpoint.
-      //right now it's just redirecting you back to the sign up page if the login credentials are correct
     }
 
     return (
       <div>
         <div className="welcome-banner-container">
           <div className="welcome-banner">
-            Welcome to ThanosBook!!!!!!!!
+            Welcome to ThanosBook
           </div>
         </div>
 
