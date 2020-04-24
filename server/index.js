@@ -32,6 +32,19 @@ app.post('/search/user/:user', (req, res)=>{
     database.collection('users').insertOne(req.body)
     .catch(err=>console.log(err))
 })
+ 
+app.put('/search/user/:user', (req, res)=>{
+    console.log(req.params.user)
+    database.collection('users').update({username: `${req.params.user}`},
+    {
+    username: `${req.params.user}`,
+    first: req.body.first,
+    last: req.body.last,
+    phone: req.body.phone,
+    about: req.body.about
+})
+    .catch(err=>console.log(err))
+})
 
 
 app.listen(port, ()=>{console.log(`Listening in on port ${port}`)})
