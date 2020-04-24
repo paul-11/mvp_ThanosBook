@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import $ from 'jquery';
 
-class Home extends Component {
+class Media extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -169,4 +169,4 @@ class Home extends Component {
 }
 
 
-export default Home;
+export default Media;

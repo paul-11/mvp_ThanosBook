@@ -7,8 +7,9 @@ import {
 } from 'react-router-dom';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
-import Media from './media.jsx';
+import Media from './dashboard/Media.jsx';
 
+import Dashboard from './dashboard/Dashboard.jsx'
 class App extends Component {
   constructor() {
     super();
@@ -19,21 +20,16 @@ class App extends Component {
 
   render() {
     return (
-      <HashRouter basename="/">
-        <div>
+    <HashRouter basename="/">
           <div>
             <Route exact path="/" component={Login} />
-          </div>
-          <div>
             <Route path="/signup" component={Signup} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/media" component={Media}/>
           </div>
-          <div>
-            <Route path="/media" component={Media} />
-          </div>
-        </div>
-      </HashRouter>
-    )
+      </HashRouter> 
+      )
+    }
   }
-}
-
+  
 export default App;
