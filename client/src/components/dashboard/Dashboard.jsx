@@ -1,21 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Navagation from './Navagation'
-import {Container, Row, Col} from 'react-bootstrap'
-import ChatSection from './ChatSection'
-import MainSection from './MainSection'
+import {Container, Row} from 'react-bootstrap'
 
+import AccountPage from './AccountPage.jsx'
+import ChatPage from './ChatPage.jsx'
+import AboutPage from './AboutPage.jsx'
 
 export default function Dashboard() {
+  const [currentComponent, setCurrentComponent] = useState('chat')
   return (
     <Container>
       <Row>
-        <Navagation />
+        <Navagation setCurrentComponent={setCurrentComponent}/>
       </Row>
       <Row >
-        <ChatSection />
-        <MainSection />
+        {currentComponent == "chat" && <ChatPage />}
+        {currentComponent == 'profile' && <AccountPage />}
+        {currentComponent == 'about' && <AboutPage />}
       </Row>
     </Container>
   )
 }
+
 

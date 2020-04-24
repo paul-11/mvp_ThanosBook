@@ -18,15 +18,15 @@ class App extends Component {
 
   render() {
     return (
-      <Dashboard />
+    <HashRouter basename="/">
+          <div>
+            <Route exact path="/" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/dashboard" component={Dashboard} />
+          </div>
+      </HashRouter> 
       )
     }
   }
   
-  /*       <HashRouter basename="/">
-          <div>
-            <Route exact path="/" component={Login} />
-            <Route path="/signup" component={Signup} />
-          </div>
-      </HashRouter> */
 export default App;

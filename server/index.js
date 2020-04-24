@@ -18,10 +18,11 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, fu
 });
 
 app.get('/search/user/:user', (req, res)=>{
-    // console.log(req.params.user);
+    console.log(req.params.user);
     database.collection('users').find({username: `${req.params.user}`}).toArray((err, result)=>{
     // database.collection('shoes').find({id:10000000}).limit(1).toArray((err, result)=>{
         if(err) throw err;
+        console.log(result)
         res.status(200).send(result)
     })
 })

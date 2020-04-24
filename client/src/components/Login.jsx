@@ -17,9 +17,11 @@ export default class Login extends Component {
   }
 
   doesUsernameExist() {
+    console.log(this.state.username, this.state.password)
     axios.get(`/search/user/${this.state.username}`)
       .then((res) => {
         if(res.data[0] === undefined){
+          console.log(res.data[0])
           this.setState({
             isCredentialsCorrect: false
           })
@@ -60,13 +62,12 @@ export default class Login extends Component {
 
   render() {
     if (this.state.isCredentialsCorrect === true) {
-      return <Redirect to='/signup' />
+      return <Redirect to='/dashboard' />
       //change the '/signup' endpoint to the profile page endpoint.
       //right now it's just redirecting you back to the sign up page if the login credentials are correct
     }
 
     return (
-      <>
       <div>
         <div className="welcome-banner-container">
           <div className="welcome-banner">
@@ -74,41 +75,38 @@ export default class Login extends Component {
           </div>
         </div>
 
-          <div className="form-wrapper">
-            <form className="form-container" >
-              <div className="input-container">
-                <div className="input-heading">
-                  Username
-                  </div>
-                <div className="input-box-container">
-                  <input className="input-box" />
-                </div>
-
-                <div className="input-heading">
-                  Password
-                  </div>
-                <div className="input-box-container">
-                  <input className="input-box" />
-                </div>
-
-                <div className="login-error">
-                  Invalid username or password
-                    </div>
+        <div className="form-wrapper">
+          <form className="form-container" >
+            <div className="input-container">
+              <div className="input-heading">
+                Username
+              </div>
+              <div className="input-box-container">
+                <input className="input-box" name="username" onChange={this.onUsernameChange}/>
               </div>
 
+              <div className="input-heading">
+                Password
+              </div>
+              <div className="input-box-container">
+                <input className="input-box" name="password" onChange={this.onPasswordChange}/>
+              </div>
 
-              <div className="login-container">
-                <Button className="login-box">
-                  Login
-                </Button>
+              {this.renderCredentialsError()}
+            </div>
+
+
+            <div className="login-container">
+              <div className="login-box" onClick={this.doesUsernameExist}>
+                Login
               </div>
-              <div className="create-acc-container">
-                  <NavLink className="create-acc" to='/signup'>Create an account</NavLink>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="create-acc-container">
+              <NavLink className="create-acc" to='/signup'>Create an account</NavLink>
+            </div>
+          </form>
         </div>
-      </>
+      </div>
     )
   }
 }
