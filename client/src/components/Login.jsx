@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
-
+import { Button } from 'react-bootstrap'
 // const Login = () => (
 export default class Login extends Component {
   constructor() {
@@ -24,6 +24,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      <>
       <div>
         <div className="welcome-banner-container">
           <div className="welcome-banner">
@@ -31,40 +32,41 @@ export default class Login extends Component {
         </div>
         </div>
 
-        <div className="form-wrapper">
-          <form className="form-container" >
-            <div className="input-container">
-              <div className="input-heading">
-                Username
-                 </div>
-              <div className="input-box-container">
-                <input className="input-box" />
+          <div className="form-wrapper">
+            <form className="form-container" >
+              <div className="input-container">
+                <div className="input-heading">
+                  Username
+                  </div>
+                <div className="input-box-container">
+                  <input className="input-box" />
+                </div>
+
+                <div className="input-heading">
+                  Password
+                  </div>
+                <div className="input-box-container">
+                  <input className="input-box" />
+                </div>
+
+                <div className="login-error">
+                  Invalid username or password
+                    </div>
               </div>
 
-              <div className="input-heading">
-                Password
-                 </div>
-              <div className="input-box-container">
-                <input className="input-box" />
+
+              <div className="login-container">
+                <Button className="login-box">
+                  Login
+                </Button>
               </div>
-
-              <div className="login-error">
-                Invalid username or password
-                   </div>
-            </div>
-
-
-            <div className="login-container">
-              <div className="login-box">
-                Login
+              <div className="create-acc-container">
+                  <NavLink className="create-acc" to='/signup'>Create an account</NavLink>
               </div>
-            </div>
-            <div className="create-acc-container">
-                <NavLink className="create-acc" to='/signup'>Create an account</NavLink>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 }
