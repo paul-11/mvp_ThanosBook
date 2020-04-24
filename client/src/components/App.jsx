@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import Media from './media.jsx';
 
 class App extends Component {
   constructor() {
@@ -25,6 +26,9 @@ class App extends Component {
           </div>
           <div>
             <Route path="/signup" component={Signup} />
+          </div>
+          <div>
+            <Route path="/media" component={Media} />
           </div>
         </div>
       </HashRouter>

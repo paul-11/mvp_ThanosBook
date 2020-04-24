@@ -62,6 +62,9 @@ export default class Login extends Component {
             <div className="create-acc-container">
                 <NavLink className="create-acc" to='/signup'>Create an account</NavLink>
             </div>
+            <div className="media">
+                <NavLink className="media" to='/media'>MEDIA</NavLink>
+            </div>
           </form>
         </div>
       </div>
