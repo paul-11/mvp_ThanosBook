@@ -8,6 +8,7 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 let database;
@@ -20,7 +21,6 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, fu
 app.get('/search/user/:user', (req, res)=>{
     console.log(req.params.user);
     database.collection('users').find({username: `${req.params.user}`}).toArray((err, result)=>{
-    // database.collection('shoes').find({id:10000000}).limit(1).toArray((err, result)=>{
         if(err) throw err;
         console.log(result)
         res.status(200).send(result)
@@ -28,7 +28,7 @@ app.get('/search/user/:user', (req, res)=>{
 })
 
 app.post('/search/user/:user', (req, res)=>{
-    // console.log(req.body);
+    console.log(req.body);
     database.collection('users').insertOne(req.body)
     .catch(err=>console.log(err))
 })

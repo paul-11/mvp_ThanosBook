@@ -89,7 +89,7 @@ body{
 .welcome-banner{
   font-size: 50px;
   display: block;
-  color: white;
+  color: black;
 }
 
 .form-wrapper{
@@ -106,6 +106,8 @@ body{
   padding: 30px;
   margin-top: 28px;
   border-radius: 5px;
+  border: solid gray 1px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.75);
 }
 
 .input-container{
@@ -138,16 +140,16 @@ body{
 }
 
 .login-box{
-  background-color: rgb(113, 184, 218);
+  background-color: #007bfe;
   font-size: 28px;
   color: white;
   height: 50px;
-  padding: 10px 18px 0 18px;
+  padding: 5px 18px;
   border-radius: 10px;
 }
 
 .login-box:hover{
-  background-color: rgb(34, 146, 197);
+  background-color: #0069d9;
   cursor: pointer;
 }
 
