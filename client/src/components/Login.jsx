@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
-
+import { Button } from 'react-bootstrap'
+// const Login = () => (
 export default class Login extends Component {
   constructor() {
     super();
@@ -16,9 +17,11 @@ export default class Login extends Component {
   }
 
   doesUsernameExist() {
+    console.log(this.state.username, this.state.password)
     axios.get(`/search/user/${this.state.username}`)
       .then((res) => {
         if(res.data[0] === undefined){
+          console.log(res.data[0])
           this.setState({
             isCredentialsCorrect: false
           })
@@ -59,7 +62,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.isCredentialsCorrect === true) {
-      return <Redirect to='/signup' />
+      return <Redirect to='/dashboard' />
       //change the '/signup' endpoint to the profile page endpoint.
       //right now it's just redirecting you back to the sign up page if the login credentials are correct
     }
