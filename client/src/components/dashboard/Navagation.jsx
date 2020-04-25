@@ -17,7 +17,7 @@ export default function Navagation({setCurrentComponent}) {
       <Nav.Link eventKey="profile">Profile</Nav.Link>
     </Nav.Item>
     <Nav.Item>
-      <Nav.Link eventKey="media">Media</Nav.Link>
+      <Nav.Link href="/">Log Out</Nav.Link>
     </Nav.Item>
     <Nav.Item>
       <Nav.Link eventKey="disabled" disabled>

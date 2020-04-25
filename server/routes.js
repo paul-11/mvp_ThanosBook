@@ -8,8 +8,8 @@ const router = require('express').Router();
 // const controllers = require("./controllers.js");
 
 aws.config.update({
-  accessKeyId: 'AKIAZUWHNREVUTPMMDFB',
-  secretAccessKey: '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',
+  accessKeyId: 'AKIAZUWHNREV4PWYLLWJ',
+  secretAccessKey: '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',
   region: 'us-west-2'
 })
 

@@ -25,7 +25,6 @@ class App extends Component {
             <Route exact path="/" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/media" component={Media}/>
           </div>
       </HashRouter> 
       )

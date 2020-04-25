@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import $ from 'jquery';
+import { array } from 'prop-types';
 
 class Media extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedFile: null,
-      selectedFiles: null
+      selectedFiles: null,
+      username: 'TEST'
+
     }
     this.singleFileChangedHandler = this.singleFileChangedHandler.bind(this);
     this.multipleFileChangedHandler = this.multipleFileChangedHandler.bind(this);
@@ -34,10 +37,11 @@ class Media extends Component {
   singleFileUploadHandler(event) {
     const data = new FormData();// If file selected
     if (this.state.selectedFile) {
-      data.append('profileImage', this.state.selectedFile, this.state.selectedFile.name);
+      console.log(this.state.name)
+      data.append('profileImage', this.state.selectedFile, `${this.state.username}-${this.state.selectedFile.name}`);
       for (var value of data.values()) {
-        console.log("THIS",value); 
-     }
+        console.log("THIS", value);
+      }
       axios.post('/media/profile-img-upload', data, {
         headers: {
           'accept': 'application/json',
@@ -74,7 +78,8 @@ class Media extends Component {
   };
 
   multipleFileUploadHandler() {
-    const data = new FormData(); let selectedFiles = this.state.selectedFiles;// If file selected
+    const data = new FormData();
+    let selectedFiles = this.state.selectedFiles;// If file selected
     if (selectedFiles) {
       for (let i = 0; i < selectedFiles.length; i++) {
         data.append('galleryImage', selectedFiles[i], selectedFiles[i].name);
@@ -134,35 +139,21 @@ class Media extends Component {
     console.log("CURRENT STATE", this.state)
     return (
       <div>
-        <div className="container">
+        <div id="oc-alert-container"></div>{/* Single File Upload*/}
+        <div className="mediaContainer">
           {/* For Alert box*/}
-          <div id="oc-alert-container"></div>{/* Single File Upload*/}
-          <div className="card border-light mb-3 mt-5" style={{ boxShadow: '0 5px 10px 2px rgba(195,192,192,.5)' }}>
-            <div className="card-header">
-              <h3 style={{ color: '#555', marginLeft: '12px' }}>Single Image Upload</h3>
-              <p className="text-muted" style={{ marginLeft: '12px' }}>Upload Size: 250px x 250px ( Max 2MB )</p>
+          <div className="card-header border-light imageUpload" style={{ boxShadow: '0 5px 10px 2px rgba(190,185,185,.5)', height: '55px' }}>
+            <h3 style={{ color: '#555', marginLeft: '12px', fontSize: '20px', display: "inline-flex", alignItems: 'center' }}>Image Upload</h3>
+            <p className="text-muted" style={{ marginLeft: '12px', display: "inline-flex", alignItems: 'center' }}>Max 2MB</p>
+            <div className="imageButton">
+              <input className="files" type="file" onChange={this.singleFileChangedHandler} />
+              <button className="btn btn-info" onClick={this.singleFileUploadHandler}>Upload!</button>
             </div>
-            <div className="card-body">
-              <p className="card-text">Please upload an image for your profile</p>
-              <input type="file" onChange={this.singleFileChangedHandler} />
-              <div className="mt-5">
-                <button className="btn btn-info" onClick={this.singleFileUploadHandler}>Upload!</button>
-              </div>
-            </div>
-          </div>{/* Multiple File Upload */}
-          <div className="card border-light mb-3" style={{ boxShadow: '0 5px 10px 2px rgba(195,192,192,.5)' }}>
-            <div className="card-header">
-              <h3 style={{ color: '#555', marginLeft: '12px' }}>Upload Muliple Images</h3>
-              <p className="text-muted" style={{ marginLeft: '12px' }}>Upload Size: 400px x 400px ( Max 2MB )</p>
-            </div>
-            <div className="card-body">
-              <p className="card-text">Please upload the Gallery Images for your gallery</p>
-              <input type="file" multiple onChange={this.multipleFileChangedHandler} />
-              <div className="mt-5">
-                <button className="btn btn-info" onClick={this.multipleFileUploadHandler}>Upload!</button>
-              </div>
-            </div>
-          </div></div>
+            <div className="card-body" style={{ height: '0px' }}></div>
+          </div>
+        </div>
+        <div>
+        </div>
       </div>
     );
   }
@@ -170,3 +161,17 @@ class Media extends Component {
 
 
 export default Media;
+  // {/* Multiple File Upload */}
+  //         {/* <div className="card border-light ml-4" style={{ boxShadow: '0 5px 10px 2px rgba(195,192,192,.5)' }}>
+  //           <div className="card-header">
+  //             <h3 style={{ color: '#555', marginLeft: '12px' }}>Upload Muliple Images</h3>
+  //             <p className="text-muted" style={{ marginLeft: '12px' }}>Upload Size: 400px x 400px ( Max 2MB )</p>
+  //           </div>
+  //           <div className="card-body">
+  //             <p className="card-text">Please upload the Gallery Images for your gallery</p>
+  //             <input className="files" type="file" multiple onChange={this.multipleFileChangedHandler} />
+  //             <div className="mt-5">
+  //               <button className="btn btn-info" onClick={this.multipleFileUploadHandler}>Upload!</button>
+  //             </div>
+  //           </div>
+  //         </div> */}

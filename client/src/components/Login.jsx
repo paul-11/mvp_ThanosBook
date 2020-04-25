@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
+
 
 export default class Login extends Component {
   constructor() {
@@ -14,28 +15,36 @@ export default class Login extends Component {
     this.doesUsernameExist = this.doesUsernameExist.bind(this);
     this.onUsernameChange = this.onUsernameChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onLoginEnter = this.onLoginEnter.bind(this);
   }
 
   doesUsernameExist() {
-    console.log(this.state.username, this.state.password)
-    axios.get(`/search/user/${this.state.username}`)
+    axios.post('/authenticate/password', {
+      password: this.state.password,
+      username: this.state.username
+    })
       .then((res) => {
-        if(res.data[0] === undefined){
-          console.log(res.data[0])
+        if (res.data.length === 0) {
           this.setState({
             isCredentialsCorrect: false
           })
-        }else if (res.data[0].username === this.state.username && res.data[0].password === this.state.password) {
+        }else if(res.data.username === this.state.username && res.data.isValidPW === true){
           this.setState({
             isCredentialsCorrect: true
           })
-        } else {
+        }else{
           this.setState({
-            isCredentialsCorrect: false,
+            isCredentialsCorrect: false
           })
         }
       })
-      .catch(err => console.log(err))
+      .catch(err=>console.log(err));
+  }
+
+  onLoginEnter(e){
+    if(e.key === 'Enter'){
+      this.doesUsernameExist();
+    }
   }
 
   onUsernameChange(e) {
@@ -51,7 +60,7 @@ export default class Login extends Component {
   }
 
   renderCredentialsError() {
-    if(this.state.isCredentialsCorrect === false){
+    if (this.state.isCredentialsCorrect === false) {
       return (
         <div className="login-error">
           Invalid username or password
@@ -80,14 +89,14 @@ export default class Login extends Component {
                 Username
               </div>
               <div className="input-box-container">
-                <input className="input-box" name="username" onChange={this.onUsernameChange}/>
+                <input className="input-box" name="username" onChange={this.onUsernameChange} onKeyPress={this.onLoginEnter}/>
               </div>
 
               <div className="input-heading">
                 Password
               </div>
               <div className="input-box-container">
-                <input className="input-box" name="password" onChange={this.onPasswordChange}/>
+                <input className="input-box" name="password" onChange={this.onPasswordChange} onKeyPress={this.onLoginEnter}/>
               </div>
 
               {this.renderCredentialsError()}

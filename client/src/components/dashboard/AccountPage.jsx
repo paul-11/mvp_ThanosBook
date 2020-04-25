@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Card, ListGroup, Button, Row, Col, Nav, Image} from 'react-bootstrap'
-
+import Media from './Media'
 
 const Profile = () => {
   return (
@@ -13,8 +13,7 @@ const Profile = () => {
           <ListGroup.Item>Vormir, Klandaku System</ListGroup.Item>
           <ListGroup.Item>I am Thanos. Lord of Death. God of Balance. Look Upon My Works, Ye Mighty, And Despair!</ListGroup.Item>
           <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
-      
+        </ListGroup>  
       </Card.Body>
     </Card>
   </Col>
@@ -77,16 +76,12 @@ const Friends = () => {
   )
 }
 const Album = () => {
+  
   return(
     <>
       <Card>
         <Card.Body>
-          <Image src="holder.js/171x180" rounded />
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Body>
-          <Image src="holder.js/171x180" rounded />
+          <Media />
         </Card.Body>
       </Card>
     </>

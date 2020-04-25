@@ -22,6 +22,7 @@ export default class Signup extends Component {
     this.checkUsernameLength = this.checkUsernameLength.bind(this);
     this.checkPassword = this.checkPassword.bind(this);
     this.addUser = this.addUser.bind(this);
+    this.onCreateEnter = this.onCreateEnter.bind(this);
   }
 
   checkUsernameAvailability() {
@@ -129,6 +130,12 @@ export default class Signup extends Component {
     }
   }
 
+  onCreateEnter(e){
+    if(e.key === 'Enter'){
+      this.addUser();
+    }
+  }
+
   renderUsernameLengthError() {
     if (this.state.vUL === false) {
       return (
@@ -168,7 +175,7 @@ export default class Signup extends Component {
                 Username
               </div>
               <div className="input-box-container">
-                <input className="input-box" name="username" onChange={(e)=>{this.onUsernameChange(e); setTimeout(()=>this.checkUsernameAvailability()); setTimeout(()=>this.checkUsernameLength()); }} />
+                <input className="input-box" name="username" onChange={(e)=>{this.onUsernameChange(e); setTimeout(()=>this.checkUsernameAvailability()); setTimeout(()=>this.checkUsernameLength());}} onKeyPress={this.onCreateEnter}/>
               </div>
               {this.renderUsernameTaken()}
               {this.renderUsernameLengthError()}
@@ -177,7 +184,7 @@ export default class Signup extends Component {
                 Password
               </div>
               <div className="input-box-container">
-                <input className="input-box" name="password" onChange={(e)=>{this.onPasswordChange(e); setTimeout(()=>this.checkPassword()); }} />
+                <input className="input-box" name="password" onChange={(e)=>{this.onPasswordChange(e); setTimeout(()=>this.checkPassword()); }} onKeyPress={this.onCreateEnter}/>
               </div>
               {this.renderPasswordError()}
             </div>
@@ -187,6 +194,9 @@ export default class Signup extends Component {
               <div className="login-box" onClick={this.addUser}>
                 Sign Up
               </div>
+            </div>
+            <div className="create-acc-container">
+              <NavLink className="create-acc" to='/'>Back to login</NavLink>
             </div>
           </form>
         </div>
