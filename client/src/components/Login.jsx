@@ -71,7 +71,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.isCredentialsCorrect === true) {
-      return <Redirect to='/dashboard' />
+      return <Redirect to={`/dashboard/${this.state.username}`}/>
     }
 
     return (
