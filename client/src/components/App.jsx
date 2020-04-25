@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import Media from './dashboard/Media.jsx';
+
 import Dashboard from './dashboard/Dashboard.jsx'
 class App extends Component {
   constructor() {

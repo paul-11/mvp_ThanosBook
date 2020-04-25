@@ -173,3 +173,34 @@ body{
   font-size: 17px;
   margin-bottom: 10px;
 }
+
+
+/* BRANDONS CSS START*/
+.card-header{
+  height: 75px;
+}
+.mediaContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.files{
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+
+  
+  /* justify-content: space-between; */
+}
+.imageUpload{
+ display:flex;
+ flex-direction: row;
+  justify-content: space-between;
+}
+.imageButton{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+ }
+/* BRANDONS CSS END */
