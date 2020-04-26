@@ -6,29 +6,29 @@ const path = require('path')
 const url = require('url')
 const router = require('express').Router();
 // const controllers = require("./controllers.js");
-
+const { accesskey, secretkey } = require('../keys')
 aws.config.update({
-  accessKeyId: 'AKIAZUWHNREV4PWYLLWJ',
-  secretAccessKey: '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',
+  accessKeyId: accesskey,
+  secretAccessKey: secretkey,
   region: 'us-west-2'
 })
 
-const s3 = new aws.S3({});
+const s3 = new aws.S3({accessKeyId: accesskey, secretAccessKey: secretkey});
 
-console.log("S#",s3)
+console.log("S#", s3)
 const profileImgUpload = multer({
   storage: multerS3({
-      s3: s3,
-      bucket: 'nvmbucket',
-      acl: 'public-read',
-      key: function (req, file, cb) {
-          console.log("FILE",file, s3)
-          cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
-      }
+    s3: s3,
+    bucket: 'nvmbucket',
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      // console.log("FILE", file, s3)
+      cb(null, path.basename(file.originalname, path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
+    }
   }),
   limits: { fileSize: 2000000 }, // In bytes: 2000000 bytes = 10 MB
   fileFilter: function (req, file, cb) {
-      checkFileType(file, cb);
+    checkFileType(file, cb);
   }
 }).single('profileImage');
 
@@ -40,16 +40,16 @@ const profileImgUpload = multer({
  * @return {*}
  */
 
-function checkFileType( file, cb ){
+function checkFileType(file, cb) {
   // Allowed ext
   const filetypes = /jpeg|jpg|png|gif/;
   // Check ext
-  const extname = filetypes.test( path.extname( file.originalname ).toLowerCase());
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
-  const mimetype = filetypes.test( file.mimetype );if( mimetype && extname ){
-   return cb( null, true );
+  const mimetype = filetypes.test(file.mimetype); if (mimetype && extname) {
+    return cb(null, true);
   } else {
-   cb( 'Error: Images Only!' );
+    cb('Error: Images Only!');
   }
 };
 
@@ -58,29 +58,45 @@ function checkFileType( file, cb ){
 * @desc Upload post image
 * @access public
 */
-router.post( '/profile-img-upload', ( req, res ) => {profileImgUpload( req, res, ( error ) => {
-  console.log( 'requestOkokok', req.files );
-  console.log( 'requestOkokokBODY', req.swagger );
-  // console.log( 'error', error );
-  if( error ){
-   console.log( 'errors', error );
-   res.json( { error: error } );
-  } else {
-   // If File not found
-   if( req.file === undefined ){
-    console.log( 'Error: No File Selected!' );
-    res.json( 'Error: No File Selected' );
-   } else {
-    // If Success
-    const imageName = req.file.key;
-    const imageLocation = req.file.location;// Save the file name into database into profile model
-    res.json( {
-     image: imageName,
-     location: imageLocation
-    } );
-   }
-  }
- })
+router.post('/profile-img-upload', (req, res) => {
+  profileImgUpload(req, res, (error) => {
+    console.log('requestOkokok', req.files);
+    console.log('requestOkokokBODY', req.swagger);
+    // console.log( 'error', error );
+    if (error) {
+      console.log('errors', error);
+      res.json({ error: error });
+    } else {
+      // If File not found
+      if (req.file === undefined) {
+        console.log('Error: No File Selected!');
+        res.json('Error: No File Selected');
+      } else {
+        // If Success
+        const imageName = req.file.key;
+        const imageLocation = req.file.location;// Save the file name into database into profile model
+        res.json({
+          image: imageName,
+          location: imageLocation
+        });
+      }
+    }
+  })
 });
+
+router.get('/profile-img-get', (req, res) => {
+  //Retrieves objects from Amazon s3
+  //check http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getObject-property to configure params properties
+  // var params = {Bucket: 'bucketname', Key:'keyname'}
+    console.log("HELLLLLOOOO", req)
+    var params = { Bucket: 'nvmbucket', Key: 'TEST-Desert-Bloom-Quartz-1587852839414.jpg' };
+    s3.getObject(params, function (err, data) {
+      if (err) {
+        return res.send({ "error": err });
+      }
+      console.log("DATATATAT", data)
+      res.status(200).json({ data });
+    });
+  });
 
 module.exports = router;
