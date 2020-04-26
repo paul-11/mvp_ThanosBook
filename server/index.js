@@ -40,6 +40,8 @@ app.put('/search/user/:user', (req, res)=>{
     username: `${req.params.user}`,
     first: req.body.first,
     last: req.body.last,
+    birthday: req.body.birthday,
+    email: req.body.email,
     phone: req.body.phone,
     about: req.body.about
 })

@@ -1,18 +1,31 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect } from 'react'
 import {Card, ListGroup, Button, Row, Col, Nav, Image} from 'react-bootstrap'
-
+import axios from 'axios'
 
 const Profile = () => {
+  const [profile, setProfile] = useState([])
+
+  useEffect(()=>{
+    axios.get(`search/user/notThanos`)
+    .then((res)=>setProfile(res.data[0]))
+    .catch((err)=>console.log(err))
+  }, [])
+
+  // const getAge = (birthday) => {
+  //   console.log(birthday.length)
+  //   // return (2020 - (parseInt(birthday.substr(birthday.length - 4))) > 18)
+  // }
+
   return (
     <Col xs={6} md={4}>
      <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
-        <Card.Title>Thanos Lord King</Card.Title>
+        <Card.Title>{profile.first} {profile.last}</Card.Title>
         <ListGroup variant="flush">
-          <ListGroup.Item>Vormir, Klandaku System</ListGroup.Item>
-          <ListGroup.Item>I am Thanos. Lord of Death. God of Balance. Look Upon My Works, Ye Mighty, And Despair!</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+          <ListGroup.Item>username: {profile.username}</ListGroup.Item>
+          <ListGroup.Item>birthday: {profile.birthday}</ListGroup.Item>
+          <ListGroup.Item>{profile.about}</ListGroup.Item>
         </ListGroup>
       
       </Card.Body>
