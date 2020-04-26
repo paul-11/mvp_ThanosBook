@@ -10,7 +10,8 @@ class Media extends Component {
     this.state = {
       selectedFile: null,
       selectedFiles: null,
-      username: 'TEST'
+      username: 'TEST',
+      images: []
 
     }
     this.singleFileChangedHandler = this.singleFileChangedHandler.bind(this);
@@ -18,7 +19,13 @@ class Media extends Component {
     this.singleFileUploadHandler = this.singleFileUploadHandler.bind(this);
     this.multipleFileUploadHandler = this.multipleFileUploadHandler.bind(this);
     this.ocShowAlert = this.ocShowAlert.bind(this);
-
+    this.getImages = this.getImages.bind(this);
+  }
+  getImages() {
+    console.log('hello')
+    axios.get("/media/profile-img-get")
+      .then((result) => { console.log(result) })
+      .catch((err) => { console.log("eerror", err) })
   }
 
   singleFileChangedHandler(event) {
@@ -135,6 +142,10 @@ class Media extends Component {
     }, 3000);
   };
 
+  componentDidMount() {
+    this.getImages();
+  }
+
   render() {
     console.log("CURRENT STATE", this.state)
     return (
@@ -154,6 +165,7 @@ class Media extends Component {
         </div>
         <div>
         </div>
+        <img src={`https://nvmbucket.s3.us-west-2.amazonaws.com/${'TEST-funnyWhiskey-1587868829275.jpg'}`}/>
       </div>
     );
   }
