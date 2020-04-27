@@ -75,7 +75,7 @@ export default class Login extends Component {
     }
 
     return (
-      <div>
+      <div className="login-body">
         <div className="welcome-banner-container">
           <div className="welcome-banner">
             Welcome to ThanosBook

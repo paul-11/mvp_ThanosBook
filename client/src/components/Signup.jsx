@@ -162,7 +162,7 @@ export default class Signup extends Component {
     }
 
     return (
-      <div>
+      <div className="signup-body">
         <div className="welcome-banner-container">
           <div className="welcome-banner">
             Let's get started!
