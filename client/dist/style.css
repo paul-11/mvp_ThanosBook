@@ -83,7 +83,7 @@ body{
   /* background-image: url("https://www.ubackground.com/_ph/22/846115343.jpg"); */
   height: 100%;
   width: 100%;
-  background: url("https://www.ubackground.com/_ph/22/846115343.jpg") no-repeat center center fixed; 
+  background: url("https://mvp-hr.s3-us-west-1.amazonaws.com/846115343.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -92,7 +92,7 @@ body{
 
 .signup-body{
   /* background-image: url("https://www.ubackground.com/_ph/86/584512247.jpg"); */
-  background: url("https://www.ubackground.com/_ph/86/584512247.jpg") no-repeat center center fixed; 
+  background: url("https://mvp-hr.s3-us-west-1.amazonaws.com/584512247.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
