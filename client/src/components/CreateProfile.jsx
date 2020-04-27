@@ -7,6 +7,10 @@ import * as yup from 'yup';
 
 export default function CreateProfile() {
 
+    var url = window.location.href.replace(/\/$/, '');
+    var lastSeg = url.substr(url.lastIndexOf('/') + 1);
+    console.log(lastSeg)
+
     const schema = yup.object({
         first: yup.string().required("first name required"),
         last: yup.string().required("last name required"),
@@ -30,7 +34,7 @@ export default function CreateProfile() {
 
     const handleSubmit = (values) => {
         console.log(values)
-        axios.put(`search/user/notThanos`, {
+        axios.put(`search/user/${lastSeg}`, {
             first: values.first,
             last: values.last,
             birthday: values.birthday,

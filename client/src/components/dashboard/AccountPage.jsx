@@ -6,11 +6,15 @@ import { Redirect } from 'react-router-dom'
 import $ from 'jquery'
 import { array } from 'prop-types'
 
-const Profile = () => {
+const Profile = (props) => {
   const [profile, setProfile] = useState([])
 
+  var url = window.location.href.replace(/\/$/, '');
+  var lastSeg = url.substr(url.lastIndexOf('/') + 1);
+  console.log('lastseg', lastSeg)
+
   useEffect(()=>{
-    axios.get(`search/user/notThanos`)
+    axios.get(`search/user/${lastSeg}`)
     .then((res)=>setProfile(res.data[0]))
     .catch((err)=>console.log(err))
   }, [])

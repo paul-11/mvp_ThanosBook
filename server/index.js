@@ -96,7 +96,8 @@ app.post('/media/images', (req, res) => {
     }
     res.status(200).send("SUCCESS")
 })
- 
+});
+
 app.put('/search/user/:user', (req, res)=>{
     console.log(req.params.user)
     database.collection('users').update({username: `${req.params.user}`},
@@ -111,7 +112,6 @@ app.put('/search/user/:user', (req, res)=>{
 })
     .catch(err=>console.log(err))
 })
-});
 
 app.get('/media/images/:username', (req, res) => {
     console.log("HELLLLLLLOOOOO", req.params)

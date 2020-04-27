@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import Navagation from './Navagation'
 import {Container, Row} from 'react-bootstrap'
-
 import AccountPage from './AccountPage.jsx'
 import ChatPage from './ChatPage.jsx'
 import AboutPage from './AboutPage.jsx'
