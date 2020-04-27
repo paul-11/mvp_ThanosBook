@@ -8,9 +8,9 @@ export default function AboutPage(){
       <Row>
         <Col>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src="https://mvp-hr.s3-us-west-1.amazonaws.com/ironman.jpg" style={{ height: '400px' }}/>
             <Card.Body>
-              <Card.Title>Brandon</Card.Title>
+              <Card.Title>Brandon Gomez</Card.Title>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
@@ -22,12 +22,11 @@ export default function AboutPage(){
 
         <Col>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src="https://mvp-hr.s3-us-west-1.amazonaws.com/main-qimg-2c8df03cd85570e89e01079abaec5778.jpeg" style={{ height: '400px' }}/>
             <Card.Body>
-              <Card.Title>Paul</Card.Title>
+              <Card.Title>Paul Yi</Card.Title>
               <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                I am a full stack developer who loves to puzzles and use that passion to solve modern day problems in the tech industry.
               </Card.Text>
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
@@ -38,9 +37,9 @@ export default function AboutPage(){
       <Row>
         <Col>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src="https://mvp-hr.s3-us-west-1.amazonaws.com/Spiderman-Avengers-Infinity-War-iPhone-Wallpaper.jpg" style={{ height: '400px' }}/>
             <Card.Body>
-              <Card.Title>Bert</Card.Title>
+              <Card.Title>Bertrand Shao</Card.Title>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
@@ -52,9 +51,9 @@ export default function AboutPage(){
         
         <Col>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" src="https://mvp-hr.s3-us-west-1.amazonaws.com/Thanos.jpg" style={{ height: '400px' }}/>
             <Card.Body>
-              <Card.Title>Nick</Card.Title>
+              <Card.Title>Nick Lopez</Card.Title>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
