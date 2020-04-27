@@ -100,16 +100,7 @@ app.post('/media/images', (req, res) => {
 
 app.put('/search/user/:user', (req, res)=>{
     console.log(req.params.user)
-    database.collection('users').update({username: `${req.params.user}`},
-    {
-    username: `${req.params.user}`,
-    first: req.body.first,
-    last: req.body.last,
-    birthday: req.body.birthday,
-    email: req.body.email,
-    phone: req.body.phone,
-    about: req.body.about
-})
+    database.collection('users').update({username: `${req.params.user}`}, { $set: req.body})
     .catch(err=>console.log(err))
 })
 

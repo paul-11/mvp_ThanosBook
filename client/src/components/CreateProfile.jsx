@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Row, Button, Spinner } from 'react-bootstrap';
-import "react-datepicker/dist/react-datepicker.css";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
