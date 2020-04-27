@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const port = 1234;
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://localhost:27017/budgetFB";
 const app = express();
 const router = express.Router();
 
@@ -31,6 +31,9 @@ MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, fu
     if (err) throw err;
     let dbo = db.db('budgetFB');
     database = dbo;
+    dbo.createCollection("users",(err,res)=>{
+        if(err) throw err;
+    })
 });
 
 app.get('/search/user/:user', (req, res)=>{
@@ -73,7 +76,40 @@ app.post('/search/user/:user', (req, res) => {
     });
 })
 
-// ******** BRANDON'S AWS S3 CODE ******** //
+
+// ******** BRANDON'S CODE ******** //
+app.post("/media/profileImage", (req, res) => {
+    console.log(req.body)
+    database.collection('users').updateOne({username: req.body.username}, {$set: {profPic: req.body.profPic}}, (err, result)=> {
+      if(err) {
+          console.log(err)
+      }
+      res.status(200).send("SUCCESS")
+  })
+
+});
+app.post('/media/images', (req, res) => {
+    console.log(req.body)
+    database.collection('users').updateOne({username: req.body.username}, {$push: {images: req.body.images}}, (err, result)=> {
+    if(err) {
+        console.log(err)
+    }
+    res.status(200).send("SUCCESS")
+})
+});
+
+app.get('/media/images/:username', (req, res) => {
+    console.log("HELLLLLLLOOOOO", req.params)
+    database.collection('users').find(req.params).toArray((err, result)=> {
+    if(err) {
+        console.log(err)
+    }
+    console.log(result)
+    res.status(200).send(result[0])
+})
+});
+
+// ******** BRANDON'S CODE ******** //
 
 
 

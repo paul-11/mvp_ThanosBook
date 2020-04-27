@@ -92,11 +92,11 @@ export default class Login extends Component {
                 <input className="input-box" name="username" onChange={this.onUsernameChange} onKeyPress={this.onLoginEnter}/>
               </div>
 
-              <div className="input-heading">
+              <div className="input-heading" >
                 Password
               </div>
-              <div className="input-box-container">
-                <input className="input-box" name="password" onChange={this.onPasswordChange} onKeyPress={this.onLoginEnter}/>
+              <div className="input-box-container" >
+                <input className="input-box" type="password" name="password" onChange={this.onPasswordChange} onKeyPress={this.onLoginEnter}/>
               </div>
 
               {this.renderCredentialsError()}
