@@ -184,7 +184,7 @@ export default class Signup extends Component {
                 Password
               </div>
               <div className="input-box-container">
-                <input className="input-box" name="password" onChange={(e)=>{this.onPasswordChange(e); setTimeout(()=>this.checkPassword()); }} onKeyPress={this.onCreateEnter}/>
+                <input className="input-box" type="password" name="password" onChange={(e)=>{this.onPasswordChange(e); setTimeout(()=>this.checkPassword()); }} onKeyPress={this.onCreateEnter}/>
               </div>
               {this.renderPasswordError()}
             </div>

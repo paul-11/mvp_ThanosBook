@@ -75,7 +75,7 @@ router.post('/profile-img-upload', (req, res) => {
         // If Success
         const imageName = req.file.key;
         const imageLocation = req.file.location;// Save the file name into database into profile model
-        res.json({
+        res.status(200).json({
           image: imageName,
           location: imageLocation
         });
@@ -84,19 +84,6 @@ router.post('/profile-img-upload', (req, res) => {
   })
 });
 
-router.get('/profile-img-get', (req, res) => {
-  //Retrieves objects from Amazon s3
-  //check http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getObject-property to configure params properties
-  // var params = {Bucket: 'bucketname', Key:'keyname'}
-    console.log("HELLLLLOOOO", req)
-    var params = { Bucket: 'nvmbucket', Key: 'TEST-Desert-Bloom-Quartz-1587852839414.jpg' };
-    s3.getObject(params, function (err, data) {
-      if (err) {
-        return res.send({ "error": err });
-      }
-      console.log("DATATATAT", data)
-      res.status(200).json({ data });
-    });
-  });
+
 
 module.exports = router;
