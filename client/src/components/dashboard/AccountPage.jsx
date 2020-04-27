@@ -1,12 +1,29 @@
-import React, { useState, Component } from 'react'
+import React,{useState, useEffect,Component } from 'react'
 import { Card, ListGroup, Button, Row, Col, Nav, Image, Form } from 'react-bootstrap'
+import axios from 'axios'
 import Media from './Media'
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-import $ from 'jquery';
-import { array } from 'prop-types';
+import { Redirect } from 'react-router-dom'
+import $ from 'jquery'
+import { array } from 'prop-types'
 
 const Profile = (props) => {
+  const [profile, setProfile] = useState([])
+
+  var url = window.location.href.replace(/\/$/, '');
+  var lastSeg = url.substr(url.lastIndexOf('/') + 1);
+  console.log('lastseg', lastSeg)
+
+  useEffect(()=>{
+    axios.get(`search/user/${lastSeg}`)
+    .then((res)=>setProfile(res.data[0]))
+    .catch((err)=>console.log(err))
+  }, [])
+
+  // const getAge = (birthday) => {
+  //   console.log(birthday.length)
+  //   // return (2020 - (parseInt(birthday.substr(birthday.length - 4))) > 18)
+  // }
+
   return (
     <Col>
       <Card style={{ width: '18rem' }}>
@@ -20,15 +37,16 @@ const Profile = (props) => {
         </Form>
         <Button variant="primary" style={{ width: "12rem", alignSelf: "center", marginTop: '5px' }} onClick={props.profileImageUploadHandler}>Upload Image</Button>{' '}
         <Card.Body>
-          <Card.Title>Thanos Lord King</Card.Title>
-          <ListGroup variant="flush">
-            <ListGroup.Item>Vormir, Klandaku System</ListGroup.Item>
-            <ListGroup.Item>I am Thanos. Lord of Death. God of Balance. Look Upon My Works, Ye Mighty, And Despair!</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-    </Col>
+        <Card.Title>{profile.first} {profile.last}</Card.Title>
+        <ListGroup variant="flush">
+          <ListGroup.Item>username: {profile.username}</ListGroup.Item>
+          <ListGroup.Item>birthday: {profile.birthday}</ListGroup.Item>
+          <ListGroup.Item>{profile.about}</ListGroup.Item>
+        </ListGroup>
+      
+      </Card.Body>
+    </Card>
+  </Col>
   )
 }
 

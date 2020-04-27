@@ -24,6 +24,9 @@ export default function Navagation({setCurrentComponent}) {
         Stay Cool
       </Nav.Link>
     </Nav.Item>
+    <Nav.Item>
+      <Nav.Link eventKey="create">New User</Nav.Link>
+    </Nav.Item>
   </Nav>
   )
 }
